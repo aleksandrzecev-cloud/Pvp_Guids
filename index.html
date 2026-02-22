@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloxd.io PvP Mastery Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(233, 69, 96, 0.1);
+            border-bottom: 3px solid #e94560;
+        }
+        .header h1 {
+            color: #e94560;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            color: #a0a0a0;
+            font-size: 1.2em;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            background: rgba(233, 69, 96, 0.2);
+        }
+        .nav a:hover {
+            background: #e94560;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+        .section h2 {
+            color: #e94560;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 10px;
+        }
+        .section h3 {
+            color: #00d4ff;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+        .section h4 {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+        .section p {
+            color: #d0d0d0;
+            margin-bottom: 15px;
+        }
+        .section ul, .section ol {
+            margin-left: 25px;
+            color: #d0d0d0;
+        }
+        .section li {
+            margin: 10px 0;
+        }
+        .tip-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .tip-box h4 {
+            color: #00d4ff;
+            margin-top: 0;
+        }
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .warning-box h4 {
+            color: #ffc107;
+            margin-top: 0;
+        }
+        .tier-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .tier {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .tier h4 {
+            text-align: center;
+            margin-top: 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .tier-s { background: rgba(255, 215, 0, 0.2); }
+        .tier-s h4 { color: #ffd700; background: rgba(255, 215, 0, 0.3); }
+        .tier-a { background: rgba(0, 212, 255, 0.2); }
+        .tier-a h4 { color: #00d4ff; background: rgba(0, 212, 255, 0.3); }
+        .tier-b { background: rgba(138, 43, 226, 0.2); }
+        .tier-b h4 { color: #8a2be2; background: rgba(138, 43, 226, 0.3); }
+        .tier-c { background: rgba(128, 128, 128, 0.2); }
+        .tier-c h4 { color: #808080; background: rgba(128, 128, 128, 0.3); }
+        .tier ul {
+            list-style: none;
+            margin: 0;
+        }
+        .tier li {
+            padding: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .tier li:last-child {
+            border-bottom: none;
+        }
+        .technique-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+        .technique-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+        .technique-card h4 {
+            color: #e94560;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.3);
+            border-top: 2px solid #e94560;
+            color: #a0a0a0;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .nav {
+                gap: 10px;
+            }
+            .nav a {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚔️ Bloxd.io PvP Mastery</h1>
+        <p>The ultimate guide to dominating in Bloxd.io PvP</p>
+    </div>
+
+    <nav class="nav">
+        <a href="#basics">Basics</a>
+        <a href="#combat">Combat</a>
+        <a href="#building">Building</a>
+        <a href="#tiers">Item Tiers</a>
+        <a href="#advanced">Advanced</a>
+        <a href="#modes">Game Modes</a>
+    </nav>
+
+    <div class="container">
+        <!-- Basics Section -->
+        <section class="section" id="basics">
+            <h2>🎯 PvP Basics</h2>
+            <p>Master these fundamental skills before moving to advanced techniques.</p>
+
+            <h3>Movement Fundamentals</h3>
+            <ul>
+                <li><strong>Strafing:</strong> Move side-to-side while facing your opponent. Makes you harder to hit while maintaining aim.</li>
+                <li><strong>Jump-Crits:</strong> Jump and attack simultaneously for critical hits. Time your jumps as you fall for maximum damage.</li>
+                <li><strong>Sprint-Reset:</strong> Stop sprinting momentarily to reset your attack cooldown faster, then resume sprinting.</li>
+                <li><strong>Block-Hitting:</strong> Right-click to block just before opponent hits, reducing damage taken.</li>
+            </ul>
+
+            <h3>Hotbar Management</h3>
+            <ul>
+                <li>Keep your sword in slot 1 for quick access</li>
+                <li>Put blocks in slots 2-3 for quick building</li>
+                <li>Food in slot 4 for emergency healing</li>
+                <li>Practice switching between items without looking at your hotbar</li>
+            </ul>
+
+            <div class="tip-box">
+                <h4>💡 Pro Tip</h4>
+                <p>Use number keys (1-9) to instantly switch hotbar slots. Muscle memory is key - practice until you can switch items instinctively during combat.</p>
+            </div>
+        </section>
+
+        <!-- Combat Section -->
+        <section class="section" id="combat">
+            <h2>⚔️ Combat Strategies</h2>
+
+            <h3>Sword Combat</h3>
+            <p>The most common PvP scenario. Master these techniques:</p>
+            <ol>
+                <li><strong>W-Tapping:</strong> Press W briefly between attacks to maintain knockback while resetting sprint</li>
+                <li><strong>S-Tapping:</strong> Press S to create distance when opponent is aggressive</li>
+                <li><strong>Circle Strafing:</strong> Move in circles around opponent while attacking</li>
+                <li><strong>Combo Building:</strong> Hit opponent into the air and follow up with additional hits while they're falling</li>
+            </ol>
+
+            <h3>Bow Combat</h3>
+            <ul>
+                <li><strong>Charge Shots:</strong> Fully charge bow for maximum damage (3 hearts)</li>
+                <li><strong>Quick Shots:</strong> Release early for faster fire rate with less damage</li>
+                <li><strong>Leading Targets:</strong> Aim ahead of moving opponents</li>
+                <li><strong>High Ground Advantage:</strong> Always seek elevated positions</li>
+                <li><strong>Spam Prevention:</strong> Don't rapid-fire; charged shots are more effective</li>
+            </ul>
+
+            <h3>Weapon Switching</h3>
+            <p>Advanced players switch between weapons based on range:</p>
+            <ul>
+                <li><strong>Long Range (15+ blocks):</strong> Bow only</li>
+                <li><strong>Medium Range (5-15 blocks):</strong> Rod/Bow to sword combo</li>
+                <li><strong>Close Range (0-5 blocks):</strong> Sword primary</li>
+                <li><strong>Knockback:</strong> Use KB sword to create distance when needed</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>⚠️ Common Mistake</h4>
+                <p>Don't spam-click! Wait for the attack cooldown bar to refill before attacking again. Spamming deals significantly less damage and wastes durability.</p>
+            </div>
+        </section>
+
+        <!-- Building Section -->
+        <section class="section" id="building">
+            <h2>🏗️ Combat Building</h2>
+
+            <h3>Quick Building Techniques</h3>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h4>🛡️ Defensive Wall</h4>
+                    <p>Place blocks directly in front of you while retreating. Jump and place blocks under you to gain height advantage while blocking arrows.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>⬆️ Staircase Rush</h4>
+                    <p>Jump and place blocks below you while moving forward. Look down at 45° angle for optimal placement speed.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🔄 360° Defense</h4>
+                    <p>When surrounded, quickly pillar up 2-3 blocks and build a 3x3 platform. Gives you time to assess the situation.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🏃 Escape Bridge</h4>
+                    <p>Jump, look down 45°, and hold right-click while moving forward. Essential for quick getaways over void or gaps.</p>
+                </div>
+            </div>
+
+            <h3>Base Defense</h3>
+            <ul>
+                <li><strong>Layered Defense:</strong> Build multiple walls with gaps between them</li>
+                <li><strong>Crenellations:</strong> Alternate high/low blocks on walls for arrow slits</li>
+                <li><strong>Overhangs:</strong> Extend roof blocks outward to prevent easy climbing</li>
+                <li><strong>Water Buckets:</strong> Place water to slow enemy rushes and prevent fall damage</li>
+                <li><strong>Obstacles:</strong> Fences, cobwebs, or trapdoors to slow enemies</li>
+            </ul>
+
+            <h3>Fortification Tips</h3>
+            <ul>
+                <li>Build at least 3 blocks high to prevent jump-over</li>
+                <li>Use blast-resistant materials (stone, obsidian) for outer walls</li>
+                <li>Create murder holes (openings to attack from above)</li>
+                <li>Keep escape routes ready - never box yourself in completely</li>
+                <li>Lighting: Prevent mob spawning and improve visibility</li>
+            </ul>
+        </section>
+
+        <!-- Item Tiers Section -->
+        <section class="section" id="tiers">
+            <h2>📊 Item Tier Lists</h2>
+
+            <h3>Weapons</h3>
+            <div class="tier-list">
+                <div class="tier tier-s">
+                    <h4>S-Tier</h4>
+                    <ul>
+                        <li>💎 Diamond Sword (Sharpness V)</li>
+                        <li>🏹 Power V Bow</li>
+                        <li>⚔️ Netherite Sword</li>
+                    </ul>
+                </div>
+                <div class="tier tier-a">
+                    <h4>A-Tier</h4>
+                    <ul>
+                        <li>💎 Diamond Sword (Sharpness III+)</li>
+                        <li>🏹 Power III Bow</li>
+                        <li>🗡️ Iron Sword (Sharpness V)</li>
+                        <li>🔨 Diamond Axe</li>
+                    </ul>
+                </div>
+                <div class="tier tier-b">
+                    <h4>B-Tier</h4>
+                    <ul>
+                        <li>🗡️ Iron Sword</li>
+                        <li>🏹 Power I Bow</li>
+                        <li>💎 Diamond Sword (no enchants)</li>
+                        <li>🪓 Iron Axe</li>
+                    </ul>
+                </div>
+                <div class="tier tier-c">
+                    <h4>C-Tier</h4>
+                    <ul>
+                        <li>⚔️ Stone Sword</li>
+                        <li>🏹 Unenchanted Bow</li>
+                        <li>🗡️ Wood/Gold Sword</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Armor</h3>
+            <div class="tier-list">
+                <div class="tier tier-s">
+                    <h4>S-Tier</h4>
+                    <ul>
+                        <li>🛡️ Netherite Armor</li>
+                        <li>💎 Diamond Armor (Protection IV)</li>
+                    </ul>
+                </div>
+                <div class="tier tier-a">
+                    <h4>A-Tier</h4>
+                    <ul>
+                        <li>💎 Diamond Armor (Protection II+)</li>
+                        <li>⛓️ Iron Armor (Protection IV)</li>
+                    </ul>
+                </div>
+                <div class="tier tier-b">
+                    <h4>B-Tier</h4>
+                    <ul>
+                        <li>⛓️ Iron Armor</li>
+                        <li>💎 Diamond Armor (unenchanted)</li>
+                    </ul>
+                </div>
+                <div class="tier tier-c">
+                    <h4>C-Tier</h4>
+                    <ul>
+                        <li>👕 Leather/Chain Armor</li>
+                        <li>⛓️ Iron Armor (partial set)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Utility Items</h3>
+            <div class="technique-grid">
+                <div class="technique-card">
+                    <h4>🪣 Water Bucket</h4>
+                    <p>Essential for MLG water buckets, preventing fall damage, and slowing enemies. Always carry one.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🧪 Potions</h4>
+                    <p>Speed II, Strength II, and Instant Health II are game-changers in PvP. Fire Resistance for Nether fights.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🍞 Golden Apples</h4>
+                    <p>Absorption hearts + regeneration. Use before engaging or when low health. Enchanted for better effects.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🎣 Fishing Rod</h4>
+                    <p>Pulls opponents closer, interrupting their sprint. Great for initiating combos or preventing escapes.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🧨 TNT/Creepers</h4>
+                    <p>For base raiding. Place and ignite to breach walls. Be careful of self-damage.</p>
+                </div>
+                <div class="technique-card">
+                    <h4>🥛 Milk Bucket</h4>
+                    <p>Removes all status effects including poison and wither. Counter to witch potions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Section -->
+        <section class="section" id="advanced">
+            <h2>🎓 Advanced Techniques</h2>
+
+            <h3>MLG Techniques</h3>
+            <ul>
+                <li><strong>Water Bucket MLG:</strong> Place water just before hitting ground to negate fall damage</li>
+                <li><strong>Hay Bale MLG:</strong> Similar to water but reduces fall damage instead of negating</li>
+                <li><strong>Cobweb MLG:</strong> Place cobweb to completely stop fall (but you're trapped briefly)</li>
+                <li><strong>Boat MLG:</strong> Place boat before landing - negates all damage</li>
+                <li><strong>Ladder MLG:</strong> Place ladder on wall to stop fall</li>
+            </ul>
+
+            <h3>Combo Techniques</h3>
+            <ol>
+                <li><strong>Fishing Rod Combo:</strong> Hook opponent → Switch to sword → Hit while they're reeling in</li>
+                <li><strong>Bow-Sword Combo:</strong> Shoot with bow → Immediately switch to sword and rush while they flinch</li>
+                <li><strong>Knockback Combo:</strong> Hit with Knockback sword → Pursue while airborne → Hit again on landing</li>
+                <li><strong>Pillar Combo:</strong> Build 2-block pillar → Hit opponent from above → They can't reach you</li>
+            </ol>
+
+            <h3>Psychological Warfare</h3>
+            <ul>
+                <li><strong>Fake Retreat:</strong> Run away, opponent chases, you turn and counter-attack</li>
+                <li><strong>Bait and Switch:</strong> Pretend to be AFK or weak, then ambush</li>
+                <li><strong>Third-Party:</strong> Wait for two players to fight, then attack the winner when they're weak</li>
+                <li><strong>Pressure Building:</strong> Constant aggression forces opponents to make mistakes</li>
+            </ul>
+
+            <div class="tip-box">
+                <h4>💡 Mindset Tip</h4>
+                <p>Stay calm under pressure. Panic leads to mistakes. Even if you're low health, precise play can turn fights around. The player who stays composed usually wins.</p>
+            </div>
+        </section>
+
+        <!-- Game Modes Section -->
+        <section class="section" id="modes">
+            <h2>🎮 Game Mode Strategies</h2>
+
+            <h3>Survival PvP</h3>
+            <ul>
+                <li>Never carry all your good gear - keep backups in base</li>
+                <li>Know when to run - gear preservation is sometimes smarter than dying</li>
+                <li>Set home/spawn near your base</li>
+                <li>Travel in groups when possible</li>
+                <li>Scout before engaging - check their gear first</li>
+            </ul>
+
+            <h3>Bed Wars</h3>
+            <ul>
+                <li>Rush mid quickly for resources</li>
+                <li>Build with blast-resistant materials near bed</li>
+                <li>Always leave someone defending</li>
+                <li>Bridge with defense - build walls while bridging</li>
+                <li>Target weakest teams first</li>
+                <li>Keep spare bed in inventory for emergency respawn</li>
+            </ul>
+
+            <h3>Skywars</h3>
+            <ul>
+                <li>Loot chests quickly and efficiently</li>
+                <li>Bridge to center for better loot</li>
+                <li>Don't camp - it makes you predictable</li>
+                <li>Use TNT to break enemy bridges</li>
+                <li>Knock enemies into void when possible</li>
+            </ul>
+
+            <h3>Duels</h3>
+            <ul>
+                <li>Learn the arena layout</li>
+                <li>Kit selection matters - choose based on your playstyle</li>
+                <li>Watch opponent patterns - people are creatures of habit</li>
+                <li>Adapt your strategy mid-fight</li>
+                <li>Practice specific combos before ranked matches</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>⚠️ Important</h4>
+                <p>These strategies are for educational purposes to help you understand game mechanics and improve your skills. Always play fair and follow server rules. Using actual cheats, hacks, or unauthorized modifications will get you banned and ruins the game for everyone.</p>
+            </div>
+        </section>
+
+        <!-- Final Tips -->
+        <section class="section">
+            <h2>🔑 Final Keys to Success</h2>
+            <ol>
+                <li><strong>Practice:</strong> Use PvP servers, training grounds, or creative mode to practice techniques</li>
+                <li><strong>Watch Pros:</strong> Study how top players move, build, and fight</li>
+                <li><strong>Record Yourself:</strong> Review your deaths to learn from mistakes</li>
+                <li><strong>Stay Updated:</strong> Game mechanics change - keep learning</li>
+                <li><strong>Have Fun:</strong> Don't tilt - every loss is a learning opportunity</li>
+            </ol>
+
+            <div class="tip-box">
+                <h4>🎯 Remember</h4>
+                <p>PvP skill comes from muscle memory and game sense developed over time. Don't get discouraged - even the best players started as beginners. Focus on improving one technique at a time rather than trying to master everything at once.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>Created for educational purposes • Practice hard, play fair, have fun!</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">⚔️ Good luck in your Bloxd.io battles! ⚔️</p>
+    </div>
+</body>
+</html>
